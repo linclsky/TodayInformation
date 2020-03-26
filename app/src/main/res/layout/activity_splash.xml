@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <today.news.com.FullScreenVideoView
+    <today.news.com.splash.FullScreenVideoView
         android:id="@+id/vv_play"
         style="@style/video_view_style" />
 

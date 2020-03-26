@@ -1,4 +1,4 @@
-package today.news.com;
+package today.news.com.splash;
 
 import android.content.Context;
 import android.util.AttributeSet;
