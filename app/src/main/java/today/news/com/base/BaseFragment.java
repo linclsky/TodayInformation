@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
-import today.news.com.mvp.view.LifeCircleMvpActivity;
-import today.news.com.mvp.view.LifeCircleMvpFragment;
+import today.news.mvp.mvp.view.LifeCircleMvpActivity;
+import today.news.mvp.mvp.view.LifeCircleMvpFragment;
 
 public abstract class BaseFragment extends LifeCircleMvpFragment {
 

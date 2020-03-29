@@ -4,7 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import butterknife.ButterKnife;
-import today.news.com.mvp.view.LifeCircleMvpActivity;
+import today.news.mvp.mvp.view.LifeCircleMvpActivity;
+
 
 public abstract class BaseActivity extends LifeCircleMvpActivity {
     @Override

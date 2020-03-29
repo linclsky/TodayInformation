@@ -2,9 +2,9 @@ package today.news.com.main;
 
 import android.support.v4.app.Fragment;
 
-import today.news.com.mvp.ILifeCircle;
-import today.news.com.mvp.IMvpView;
-import today.news.com.mvp.MvpControler;
+import today.news.mvp.mvp.ILifeCircle;
+import today.news.mvp.mvp.IMvpView;
+import today.news.mvp.mvp.MvpControler;
 
 public interface IMainActivityContract {
 

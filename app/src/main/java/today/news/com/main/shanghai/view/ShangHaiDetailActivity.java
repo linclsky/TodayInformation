@@ -37,28 +37,14 @@ public class ShangHaiDetailActivity extends BaseActivity {
         initAnima();
 
         initGetNetData();
+//        initPostNetData();
 
     }
-    /*
-    * 发送网络请求
-    * */
-    private void initGetNetData() {
-        OkHttpClient client = new OkHttpClient();//okhttp配置一些默认
-        /*-------------------GET请求---------------*/
-       // Request request = new Request.Builder().url("http://www.baidu.com").get().build();//建造者设计模式，是连点的，可以(.方法)
-//        HttpUrl.Builder builder = HttpUrl.parse("http://v.juhe.cn/joke/content/list.php").newBuilder();
-//        builder.addQueryParameter("sort", "desc");
-//        builder.addQueryParameter("page", "1");
-//        builder.addQueryParameter("pagesize", "2");
-//        builder.addQueryParameter("time", "" + System.currentTimeMillis()/1000);//时间戳
-//        builder.addQueryParameter("key", "bbc57dd5e4f05991aff09eafd2e667e0");
-//        Request request = new Request.Builder()
-//                .url(builder.build())
-//                .get()
-//                .build();//建造者设计模式
+
+    private void initPostNetData() {
 
         /*=---------------------POST请求---------------------------------*/
-
+        OkHttpClient client = new OkHttpClient();
         FormBody.Builder builder = new FormBody.Builder();
         builder.add("key", "0f08cd674792667feb5ce236ea028747");
         Request request = new Request.Builder()
@@ -79,6 +65,27 @@ public class ShangHaiDetailActivity extends BaseActivity {
 
             }
         });
+    }
+
+    /*
+    * 发送网络请求
+    * */
+    private void initGetNetData() {
+        OkHttpClient client = new OkHttpClient();//okhttp配置一些默认
+        /*-------------------GET请求---------------*/
+       // Request request = new Request.Builder().url("http://www.baidu.com").get().build();//建造者设计模式，是连点的，可以(.方法)
+        HttpUrl.Builder builder = HttpUrl.parse("http://v.juhe.cn/joke/content/list.php").newBuilder();
+        builder.addQueryParameter("sort", "desc");
+        builder.addQueryParameter("page", "1");
+        builder.addQueryParameter("pagesize", "2");
+        builder.addQueryParameter("time", "" + System.currentTimeMillis()/1000);//时间戳
+        builder.addQueryParameter("key", "bbc57dd5e4f05991aff09eafd2e667e0");
+        Request request = new Request.Builder()
+                .url(builder.build())
+                .get()
+                .build();//建造者设计模式
+
+
 
     }
 

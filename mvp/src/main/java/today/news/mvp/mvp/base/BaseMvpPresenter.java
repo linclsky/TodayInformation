@@ -1,11 +1,11 @@
-package today.news.com.mvp.base;
+package today.news.mvp.mvp.base;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import today.news.com.mvp.IMvpView;
-import today.news.com.mvp.presenter.LifeCircleMvpPresenter;
+import today.news.mvp.mvp.IMvpView;
+import today.news.mvp.mvp.presenter.LifeCircleMvpPresenter;
 /*
 * p层中间类
 *

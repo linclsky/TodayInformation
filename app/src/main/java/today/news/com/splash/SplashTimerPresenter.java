@@ -1,6 +1,6 @@
 package today.news.com.splash;
 
-import today.news.com.mvp.base.BaseMvpPresenter;
+import today.news.mvp.mvp.base.BaseMvpPresenter;
 
 public class SplashTimerPresenter extends BaseMvpPresenter<ISplashActivityContract.Iview> implements ISplashActivityContract.IPresenter {
 

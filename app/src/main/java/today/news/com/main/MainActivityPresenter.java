@@ -7,7 +7,7 @@ import today.news.com.main.beijing.BeiJingFragment;
 import today.news.com.main.hangzhou.HangZhouFragment;
 import today.news.com.main.shanghai.ShangHaiFragment;
 import today.news.com.main.shenzhen.ShenZhenFragment;
-import today.news.com.mvp.base.BaseMvpPresenter;
+import today.news.mvp.mvp.base.BaseMvpPresenter;
 
 public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContract.Iview> implements IMainActivityContract.IPresenter {
     
