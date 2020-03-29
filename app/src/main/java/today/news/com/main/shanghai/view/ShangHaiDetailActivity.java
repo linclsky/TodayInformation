@@ -17,6 +17,7 @@ import java.io.IOException;
 import butterknife.BindView;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -42,7 +43,17 @@ public class ShangHaiDetailActivity extends BaseActivity {
     * */
     private void initGetNetData() {
         OkHttpClient client = new OkHttpClient();//okhttp配置一些默认
-        Request request = new Request.Builder().url("http://www.baidu.com").get().build();//建造者设计模式，是连点的，可以(.方法)
+       // Request request = new Request.Builder().url("http://www.baidu.com").get().build();//建造者设计模式，是连点的，可以(.方法)
+        HttpUrl.Builder builder = HttpUrl.parse("http://v.juhe.cn/joke/content/list.php").newBuilder();
+        builder.addQueryParameter("sort", "desc");
+        builder.addQueryParameter("page", "1");
+        builder.addQueryParameter("pagesize", "2");
+        builder.addQueryParameter("time", "" + System.currentTimeMillis()/1000);//时间戳
+        builder.addQueryParameter("key", "bbc57dd5e4f05991aff09eafd2e667e0");
+        Request request = new Request.Builder()
+                .url(builder.build())
+                .get()
+                .build();//建造者设计模式
         Call call = client.newCall(request);
         call.enqueue(new Callback() {
             //请求失败
