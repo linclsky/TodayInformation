@@ -14,7 +14,7 @@ import today.news.com.mvp.view.LifeCircleMvpFragment;
 
 public abstract class BaseFragment extends LifeCircleMvpFragment {
 
-    private Context mContext;
+    protected Context mContext;
 
     @Override
     public void onAttach(Context context) {
