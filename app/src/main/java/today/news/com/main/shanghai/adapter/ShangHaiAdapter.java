@@ -115,9 +115,9 @@ public class ShangHaiAdapter extends RecyclerView.Adapter {
             mRecyclerView = itemView.findViewById(R.id.item_shanghai_rv);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
             //被回收的view设置为true的时候被多个view进行复用
-            linearLayoutManager.setRecycleChildrenOnDetach(true);
+            //linearLayoutManager.setRecycleChildrenOnDetach(true);
             mRecyclerView.setLayoutManager(linearLayoutManager);
-            mRecyclerView.setRecycledViewPool(recycledViewPool);
+            //mRecyclerView.setRecycledViewPool(recycledViewPool);
         }
     }
 }
