@@ -3,9 +3,9 @@ package today.news.com.main.shanghai.module;
 import java.util.HashMap;
 import java.util.Map;
 
-import today.news.http.LfHttpTask;
+import today.news.http.LfHttpServer;
 
-public class ShangHaiDetailHttpTask extends LfHttpTask {
+public class ShangHaiDetailHttpTask extends LfHttpServer {
 
     public Object getXiaoHuaList (String sort, String page, String pagesize){
         Map<String,Object> params = new HashMap<>();

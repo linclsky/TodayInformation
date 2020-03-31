@@ -25,11 +25,15 @@ import okhttp3.Response;
 import today.news.com.R;
 import today.news.com.base.BaseActivity;
 import today.news.com.base.ViewInject;
+import today.news.com.main.shanghai.lf.IShangHaiDetailContract;
 import today.news.com.main.shanghai.manager.GetXiaoHuaTask;
 import today.news.com.main.shanghai.module.ShangHaiDetailHttpTask;
+import today.news.com.main.shanghai.presenter.ShangHaiDetailPresenter;
 
 @ViewInject(mainlayoutid = R.layout.activity_shanghai_detail)
-public class ShangHaiDetailActivity extends BaseActivity {
+public class ShangHaiDetailActivity extends BaseActivity implements IShangHaiDetailContract.Iview {
+
+    IShangHaiDetailContract.IPresenter mIPresenter = new ShangHaiDetailPresenter(this);
     @BindView(R.id.iv_shanghai_detail)
     ImageView mIvShanghaiDetail;
     public static String mActivityOptionsCompat = "ShangHaiDetailActivity";
@@ -91,8 +95,10 @@ public class ShangHaiDetailActivity extends BaseActivity {
 //        Response response = (Response) desc;
 //        Log.e("initGetNetData", response.body().toString());
 
-        GetXiaoHuaTask task = new GetXiaoHuaTask();
-        task.execute("desc","1","1");
+//        GetXiaoHuaTask task = new GetXiaoHuaTask();
+//        task.execute("desc","1","1");
+
+        mIPresenter.getNetData();
     }
 
     private void initAnima() {

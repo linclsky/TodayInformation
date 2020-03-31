@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 
 import today.news.mvp.mvp.IMvpView;
 import today.news.mvp.mvp.presenter.LifeCircleMvpPresenter;
+import today.news.task.LfTask;
+
 /*
 * p层中间类
 *
@@ -69,4 +71,6 @@ public abstract class BaseMvpPresenter<T extends IMvpView> extends LifeCircleMvp
     public void onSaveInstanceState(Bundle bundle) {
 
     }
+
+
 }

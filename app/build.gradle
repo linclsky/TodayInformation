@@ -35,4 +35,5 @@ dependencies {
     //module依赖库的引用
     implementation project(':mvp')
     implementation project(path: ':http')
+    implementation project(':task')
 }
