@@ -97,8 +97,13 @@ public class ShangHaiDetailActivity extends BaseActivity implements IShangHaiDet
 
 //        GetXiaoHuaTask task = new GetXiaoHuaTask();
 //        task.execute("desc","1","1");
+        mIvShanghaiDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mIPresenter.getNetData();
+            }
+        });
 
-        mIPresenter.getNetData();
     }
 
     private void initAnima() {

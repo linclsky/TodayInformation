@@ -7,14 +7,14 @@ import java.util.concurrent.FutureTask;
 import today.news.task.tools.ThreadUtil;
 
 
-public class AsyncTaskInstance extends FutureTask {
+public class AsyncTaskInstance<Result> extends FutureTask<Result> {
     private final ITaskBackground iTaskBackground;
     private final ITaskCallBack iTaskCallBack;
 
-    public AsyncTaskInstance(final ITaskBackground iTaskBackground, ITaskCallBack iTaskCallBack) {
-        super(new Callable() {
+    public AsyncTaskInstance(final ITaskBackground<Result> iTaskBackground, ITaskCallBack<Result> iTaskCallBack) {
+        super(new Callable<Result>() {
             @Override
-            public Object call() throws Exception {
+            public Result call() throws Exception {
                 return iTaskBackground.onBackground();
             }
         });
@@ -51,7 +51,7 @@ public class AsyncTaskInstance extends FutureTask {
                 ThreadUtil.postMainThread(new Runnable() {
                     @Override
                     public void run() {
-                        iTaskCallBack.onSuccess(object);
+                        iTaskCallBack.onComplete(object);
                     }
                 });
 

@@ -4,10 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import today.news.http.LfHttpServer;
+import today.news.http.result.IResult;
 
-public class ShangHaiDetailHttpTask extends LfHttpServer {
+public class ShangHaiDetailHttpTask<T> extends LfHttpServer {
 
-    public Object getXiaoHuaList (String sort, String page, String pagesize){
+    public IResult<T> getXiaoHuaList (String sort, String page, String pagesize){
         Map<String,Object> params = new HashMap<>();
         params.put("sort",sort);
         params.put("page",page);

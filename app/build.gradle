@@ -36,4 +36,5 @@ dependencies {
     implementation project(':mvp')
     implementation project(path: ':http')
     implementation project(':task')
+    implementation 'com.google.code.gson:gson:2.8.5'
 }

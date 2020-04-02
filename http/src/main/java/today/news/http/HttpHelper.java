@@ -4,6 +4,7 @@ import java.util.Map;
 
 import today.news.http.okhttp.OkHttpScheduler;
 import today.news.http.request.ICall;
+import today.news.http.result.IResult;
 
 public class HttpHelper {
 
@@ -22,12 +23,12 @@ public class HttpHelper {
 
     //TODO:待重构
 
-    protected static  Object execute(IRequest request, Map<String,Object> params){
+    protected static <T> IResult<T> execute(IRequest request, Map<String,Object> params){
         request.setParams(params);
 
         ICall call = getHttpScheduler().newCall(request);
-        Object object = getHttpScheduler().execute(call);
 
-        return object;
+
+        return getHttpScheduler().execute(call);
     }
 }

@@ -1,7 +1,9 @@
 package today.news.http;
 
+import java.lang.reflect.Type;
 import java.util.Map;
 
+import today.news.http.parser.IParser;
 import today.news.http.request.IHost;
 
 public interface IRequest {
@@ -15,6 +17,10 @@ public interface IRequest {
     IHost getHost();
 
     String getPath();
+
+    IParser getParser();
+
+    Type getType();
 
 
 

@@ -7,7 +7,7 @@ public class TaskHelper {
         AsyncTaskInstance instance = AsyncTaskInstance.getInstanse(iTaskBackground,iTaskCallBack);
 
         //构建线程池管理器
-        exec.execute(instance);
+       TaskScheduler.getInstance().submit(instance);
 
     }
 }
