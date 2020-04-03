@@ -61,6 +61,9 @@ public class OkHttpScheduler extends HttpScheduler {
     private OkHttpClient getClient() {
         if (mClient == null){
             mClient = new OkHttpClient();
+
+            OkHttpClient.Builder builder = new OkHttpClient.Builder();
+
         }
         return mClient;
     }
