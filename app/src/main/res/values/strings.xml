@@ -4,5 +4,6 @@
     <string name="str_main_hangzhou">杭州</string>
     <string name="str_main_bejing">北京</string>
     <string name="str_main_shenzhen">深圳</string>
+    <string name="bottom_show_behavior" >today.news.com.main.hangzhou.design.BottomShowBehavior</string>
 
 </resources>

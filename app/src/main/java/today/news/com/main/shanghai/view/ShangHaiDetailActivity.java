@@ -25,6 +25,7 @@ import okhttp3.Response;
 import today.news.com.R;
 import today.news.com.base.BaseActivity;
 import today.news.com.base.ViewInject;
+import today.news.com.main.shanghai.dto.ShangHaiDetailBean;
 import today.news.com.main.shanghai.lf.IShangHaiDetailContract;
 import today.news.com.main.shanghai.manager.GetXiaoHuaTask;
 import today.news.com.main.shanghai.module.ShangHaiDetailHttpTask;
@@ -100,7 +101,7 @@ public class ShangHaiDetailActivity extends BaseActivity implements IShangHaiDet
         mIvShanghaiDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mIPresenter.getNetData();
+                mIPresenter.getNetData(20);
             }
         });
 
@@ -126,6 +127,11 @@ public class ShangHaiDetailActivity extends BaseActivity implements IShangHaiDet
             ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,pair);
             ActivityCompat.startActivity(activity,intent,optionsCompat.toBundle());
         }
+
+    }
+
+    @Override
+    public void showData(ShangHaiDetailBean data) {
 
     }
 }

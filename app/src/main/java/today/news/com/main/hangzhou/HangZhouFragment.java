@@ -14,6 +14,8 @@ import butterknife.BindView;
 import today.news.com.R;
 import today.news.com.base.BaseFragment;
 import today.news.com.base.ViewInject;
+import today.news.com.main.hangzhou.adpter.HangZhouViewPagerAdapter;
+import today.news.com.main.hangzhou.view.ZHiHuFragment;
 import today.news.com.main.shenzhen.ShenZhenFragment;
 
 @ViewInject(mainlayoutid = R.layout.fragment_hangzhou)
@@ -32,24 +34,8 @@ public class HangZhouFragment extends BaseFragment {
 //            mArrayList.add("深圳");
 //        }
         mTlTablayout.setupWithViewPager(mVpViewpager);
-        mVpViewpager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
-            @Override
-            public Fragment getItem(int i) {
-                Log.d("HangZhouFragment", "position" + i);
-                return new ShenZhenFragment();
-            }
 
-            @Override
-            public int getCount() {
-                return 5;
-            }
-
-            @Nullable
-            @Override
-            public CharSequence getPageTitle(int position) {
-                return "深圳";
-            }
-        });
+        mVpViewpager.setAdapter( new HangZhouViewPagerAdapter(getChildFragmentManager()));
 
 //        mVpViewpager.postDelayed(new Runnable() {
 //            @Override
