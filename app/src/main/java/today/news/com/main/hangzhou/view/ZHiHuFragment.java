@@ -4,6 +4,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.animation.AnimationUtils;
 
 import butterknife.BindView;
 import today.news.com.R;
@@ -30,6 +31,7 @@ public class ZHiHuFragment extends BaseFragment implements IShangHaiDetailContra
     public void afterBindView() {
 
         mZhihuRecyclerview.setLayoutManager(new LinearLayoutManager(mContext));
+        mZhihuRecyclerview.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.zhihu_recyclerview_show));
         mIPresenter.getNetData(20);
     }
 
