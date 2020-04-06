@@ -2,11 +2,12 @@ package today.news.refresh;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.TextView;
 
 public class DefaultRefreshManager extends BaseRefreshManager {
 
     private View mView;
-    private View mTvRefresh;
+    private TextView mTvRefresh;
 
     public DefaultRefreshManager(Context context) {
         super(context);
@@ -18,5 +19,28 @@ public class DefaultRefreshManager extends BaseRefreshManager {
         mTvRefresh = mView.findViewById(R.id.header_text);
         return mView;
     }
+
+    @Override
+    public void downRefresh() {
+        mTvRefresh.setText("下拉刷新");
+    }
+
+    @Override
+    public void releaseRefresh() {
+        mTvRefresh.setText("释放刷新");
+
+
+    }
+
+    @Override
+    public void iddleRefresh() {
+        mTvRefresh.setText("下拉刷新");
+    }
+
+    @Override
+    public void refreshing() {
+        mTvRefresh.setText("正在刷新");
+    }
+
 
 }

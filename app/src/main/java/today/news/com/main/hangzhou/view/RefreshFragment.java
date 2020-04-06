@@ -14,6 +14,17 @@ public class RefreshFragment extends BaseFragment {
     @Override
     public void afterBindView() {
         mGodRefresh.setRefreshManager();
+        mGodRefresh.setRefreshListener(new GodRefreshLayout.RefreshingListener() {
+            @Override
+            public void onRefreshing() {
+                mGodRefresh.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mGodRefresh.refreshOver();
+                    }
+                },2000);
+            }
+        });
 
     }
 }
