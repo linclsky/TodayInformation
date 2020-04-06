@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import java.util.ArrayList;
 
 import today.news.com.main.hangzhou.view.JiKeFragment;
+import today.news.com.main.hangzhou.view.RefreshFragment;
 import today.news.com.main.hangzhou.view.ZHiHuFragment;
 
 public class HangZhouViewPagerAdapter extends FragmentStatePagerAdapter {
@@ -17,6 +18,7 @@ public class HangZhouViewPagerAdapter extends FragmentStatePagerAdapter {
         super(fm);
         titleList.add("知乎");
         titleList.add("即刻");
+        titleList.add("下拉刷新");
     }
 
     @Override
@@ -24,6 +26,7 @@ public class HangZhouViewPagerAdapter extends FragmentStatePagerAdapter {
         switch (i){
             case 0:return new ZHiHuFragment();
             case 1:return new JiKeFragment();
+            case 2:return new RefreshFragment();
             default:
                 return null;
         }
