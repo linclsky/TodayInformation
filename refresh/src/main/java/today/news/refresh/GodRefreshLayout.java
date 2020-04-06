@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,6 +24,9 @@ public class GodRefreshLayout extends LinearLayout {
     private int minHeadViewHeight;// 头部布局最小的一个高度
     private int maxHeadViewHeight;// 头部布局最大的一个高度
     private RefreshingListener mRefreshingListener;//正在刷新回调接口
+    private RecyclerView mRecyclerView;
+
+
 
     public GodRefreshLayout(Context context) {
         super(context);
@@ -96,6 +100,9 @@ public class GodRefreshLayout extends LinearLayout {
                 return true;
             case MotionEvent.ACTION_MOVE:
                 int MoveY = (int) event.getY();
+                if (mDownY == 0){
+                    mDownY = mInterceptDowY;
+                }
                 int dy = MoveY - mDownY;
                 if (dy > 0){
                     LayoutParams layoutParams = getHeadViewLayoutParams();
@@ -125,6 +132,57 @@ public class GodRefreshLayout extends LinearLayout {
                 default:break;
         }
         return super.onTouchEvent(event);
+    }
+
+    //处理子view的viewGroup的拦截处理
+
+    private int mInterceptDowY;
+    private int mInterceptDowX;
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                mInterceptDowY = (int) ev.getY();
+                mInterceptDowX= (int) ev.getX();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                //1,确定滑动的方向，只有上下滑动才会触发
+                int dy = (int) (ev.getY() - mInterceptDowY);
+                int dx = (int) (ev.getX() - mInterceptDowX);
+                //dy>dx说明是上下滑动,并且要判断RecyclerView要在顶端才刷新
+                if (Math.abs(dy) > Math.abs(dx) && dy > 0 && handleChildViewIsTop()){
+
+                    return true;
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+            default:
+                break;
+
+        }
+        return super.onInterceptTouchEvent(ev);
+    }
+
+    //判断子view是否是滑动在顶端的
+    private boolean handleChildViewIsTop() {
+        if (mRecyclerView != null){
+            return RefreshScrollingUtil.isRecyclerViewToTop(mRecyclerView);
+        }
+
+        return false;
+    }
+
+    //这个方法回调时，可以获取当前viewGroup子view
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        //mHeadView是0,下面的子view是1,但是是动态获取RecyclerView的所以还是传入0
+        View childAt = getChildAt(0);
+        //获取RecyclerView
+        if (childAt instanceof RecyclerView){
+            mRecyclerView = (RecyclerView) childAt;
+        }
     }
 
     private boolean handleEventUp(MotionEvent event) {

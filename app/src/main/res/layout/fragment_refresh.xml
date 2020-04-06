@@ -10,12 +10,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</today.news.refresh.GodRefreshLayout>
-
-    <TextView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="测试文本"/>
+        android:id="@+id/refresh_recyclerview">
+
+    </android.support.v7.widget.RecyclerView>
+</today.news.refresh.GodRefreshLayout>
+
+
 
 
 
