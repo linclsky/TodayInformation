@@ -8,6 +8,7 @@ import today.news.com.R;
 import today.news.com.base.BaseFragment;
 import today.news.com.base.ViewInject;
 import today.news.com.main.hangzhou.adpter.ZhiHuAdapter;
+import today.news.com.main.hangzhou.refresh.MeiTuanRefreshManager;
 import today.news.com.main.shanghai.dto.ShangHaiDetailBean;
 import today.news.com.main.shanghai.lf.IShangHaiDetailContract;
 import today.news.com.main.shanghai.presenter.ShangHaiDetailPresenter;
@@ -29,7 +30,10 @@ public class RefreshFragment extends BaseFragment implements IShangHaiDetailCont
     }
 
     private void initRefreshLayout() {
-        mGodRefresh.setRefreshManager();
+        //1.采用默认的方式
+        //mGodRefresh.setRefreshManager();
+        //2.是支持用户自定义
+        mGodRefresh.setRefreshManager(new MeiTuanRefreshManager(mContext));
         mGodRefresh.setRefreshListener(new GodRefreshLayout.RefreshingListener() {
             @Override
             public void onRefreshing() {

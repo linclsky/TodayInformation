@@ -108,7 +108,12 @@ public class GodRefreshLayout extends LinearLayout {
                     LayoutParams layoutParams = getHeadViewLayoutParams();
                     //阻尼效果
                     int topMargin  = (int) Math.min(dy/1.8f + minHeadViewHeight,maxHeadViewHeight );
-
+                    //这个事件的处理是为了 不断回调这个 比例，用于一些视觉效果
+                    if (topMargin <= 0){
+                        //0-1 进行变化
+                        float percent = ((-minHeadViewHeight) - (-topMargin)) * 1.0f /(-minHeadViewHeight);
+                        mDefaultRefreshManager.downRefreshPercent(percent);
+                    }
                     if (topMargin < 0 && mCurrentRefreshState != RefreshState.DOWNREFRESH){
 
                         mCurrentRefreshState = RefreshState.DOWNREFRESH;
@@ -254,6 +259,6 @@ public class GodRefreshLayout extends LinearLayout {
     private RefreshState mCurrentRefreshState = RefreshState.IDDLE;
     //定义下拉刷新的状态 ，依次为  静止、下拉刷新、释放刷新、正在刷新、刷新完成
     private enum RefreshState{
-        IDDLE, DOWNREFRESH,RELEASEREFRESH,REFRESHING,REFRESHOVER
+        IDDLE, DOWNREFRESH,RELEASEREFRESH,REFRESHING
     }
 }
