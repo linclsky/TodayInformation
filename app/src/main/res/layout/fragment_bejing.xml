@@ -3,10 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <Button
+        android:text="去上海旅游"
+        android:layout_gravity="center"
+        android:id="@+id/bt_paly"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="北京"
-        android:gravity="center"/>
+        android:layout_height="200dp" />
 
 </LinearLayout>

@@ -16,13 +16,21 @@
         <activity android:name=".splash.SplashActivity"
             android:theme="@style/FullScree">
             <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.MainActivity"></activity>
-        <activity android:name=".main.shanghai.view.ShangHaiDetailActivity" />
+
+        <provider
+            android:authorities="com.news.today.process.data"
+            android:name=".main.beijing.MainProcessDataProvider"/>
+
+        <activity android:name=".main.MainActivity"/>
+        <activity
+            android:process=":shanghai.detatil"
+            android:name=".main.shanghai.view.ShangHaiDetailActivity" />
     </application>
 
 </manifest>

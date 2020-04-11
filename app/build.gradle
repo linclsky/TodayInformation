@@ -34,6 +34,9 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //lottie
     implementation 'com.airbnb.android:lottie:2.2.5'
+    //apt
+    implementation project(':annotation')
+    annotationProcessor project(':apt')
     //module依赖库的引用
     implementation project(':mvp')
     implementation project(path: ':http')

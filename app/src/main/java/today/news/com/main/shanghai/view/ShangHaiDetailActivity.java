@@ -1,7 +1,12 @@
 package today.news.com.main.shanghai.view;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Build;
 
 import android.support.v4.app.ActivityCompat;
@@ -38,15 +43,39 @@ public class ShangHaiDetailActivity extends BaseActivity implements IShangHaiDet
     @BindView(R.id.iv_shanghai_detail)
     ImageView mIvShanghaiDetail;
     public static String mActivityOptionsCompat = "ShangHaiDetailActivity";
+//    private GetProcessReceiver mGetProcessReceiver;
 
     @Override
     public void afterBindView() {
         initAnima();
-
+//        initReceiver();
+//        initProcessData();
         initGetNetData();
 //        initPostNetData();
+        initProviderData();
 
     }
+
+    private void initProviderData() {
+        Uri insert = getContentResolver().insert(Uri.parse("content://com.news.today.process.data"), new ContentValues());
+      Log.e(mActivityOptionsCompat, "processDec = " + insert.toString());
+    }
+
+//    private void initReceiver() {
+//        mGetProcessReceiver = new GetProcessReceiver();
+//        registerReceiver(mGetProcessReceiver,new IntentFilter("beijing_post_process_data"));
+//    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        unregisterReceiver(mGetProcessReceiver);
+    }
+
+//    private void initProcessData() {
+//        Intent intent = new Intent("shanghai_get_process_data");
+//        sendBroadcast(intent);
+//    }
 
     private void initPostNetData() {
 
@@ -134,4 +163,14 @@ public class ShangHaiDetailActivity extends BaseActivity implements IShangHaiDet
     public void showData(ShangHaiDetailBean data) {
 
     }
+
+//
+//private class GetProcessReceiver extends BroadcastReceiver{
+//
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            String processDec = intent.getStringExtra("processDec");
+//           Log.e(mActivityOptionsCompat, "processDec = " + processDec);
+//        }
+//    }
 }
