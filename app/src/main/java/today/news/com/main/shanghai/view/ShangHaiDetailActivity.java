@@ -94,7 +94,13 @@ public class ShangHaiDetailActivity extends BaseActivity implements IShangHaiDet
         initGetNetData();
 //        initPostNetData();
 //        initProviderData();
-        initProcessService();
+//
+        initRpc();
+
+    }
+
+    private void initRpc() {
+
 
     }
 
