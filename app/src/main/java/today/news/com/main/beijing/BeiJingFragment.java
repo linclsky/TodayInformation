@@ -23,6 +23,7 @@ public class BeiJingFragment extends BaseFragment {
 
     @Override
     public void afterBindView() {
+        mContext.startService(new Intent(mContext,MainProcessService.class));
 
         tvClick.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +41,7 @@ public class BeiJingFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mContext.stopService(new Intent(mContext,MainProcessService.class));
 //        getActivity().unregisterReceiver(mProcessDataReceiver);
     }
 

@@ -1,14 +1,23 @@
 package today.news.com.main.shanghai.view;
 
 import android.app.Activity;
+import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.Build;
 
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
@@ -30,6 +39,7 @@ import okhttp3.Response;
 import today.news.com.R;
 import today.news.com.base.BaseActivity;
 import today.news.com.base.ViewInject;
+import today.news.com.main.beijing.MainProcessService;
 import today.news.com.main.shanghai.dto.ShangHaiDetailBean;
 import today.news.com.main.shanghai.lf.IShangHaiDetailContract;
 import today.news.com.main.shanghai.manager.GetXiaoHuaTask;
@@ -44,6 +54,37 @@ public class ShangHaiDetailActivity extends BaseActivity implements IShangHaiDet
     ImageView mIvShanghaiDetail;
     public static String mActivityOptionsCompat = "ShangHaiDetailActivity";
 //    private GetProcessReceiver mGetProcessReceiver;
+    private ServiceConnection mServiceConnection = new ServiceConnection() {
+
+    private Messenger mMessenger;
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            Bundle data = msg.getData();
+            Log.e(mActivityOptionsCompat, "processDec = " + data.getString("process"));
+        }
+    };
+    private Messenger mMessengerClient = new Messenger(mHandler);
+
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder service) {
+        mMessenger = new Messenger(service);
+        Message message = new Message();
+        message.what = MainProcessService.SHANGHAI_DETAIL;
+        message.replyTo = mMessengerClient;
+        try {
+            mMessenger.send(message);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+
+    }
+};
 
     @Override
     public void afterBindView() {
@@ -52,14 +93,21 @@ public class ShangHaiDetailActivity extends BaseActivity implements IShangHaiDet
 //        initProcessData();
         initGetNetData();
 //        initPostNetData();
-        initProviderData();
+//        initProviderData();
+        initProcessService();
 
     }
 
-    private void initProviderData() {
-        Uri insert = getContentResolver().insert(Uri.parse("content://com.news.today.process.data"), new ContentValues());
-      Log.e(mActivityOptionsCompat, "processDec = " + insert.toString());
+    private void initProcessService() {
+        Intent intent = new Intent(this, MainProcessService.class);
+        bindService(intent,mServiceConnection, Service.BIND_AUTO_CREATE);
+
     }
+
+//    private void initProviderData() {
+//        Uri insert = getContentResolver().insert(Uri.parse("content://com.news.today.process.data"), new ContentValues());
+//      Log.e(mActivityOptionsCompat, "processDec = " + insert.toString());
+//    }
 
 //    private void initReceiver() {
 //        mGetProcessReceiver = new GetProcessReceiver();
